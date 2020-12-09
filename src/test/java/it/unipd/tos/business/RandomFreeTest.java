@@ -106,9 +106,24 @@ public class RandomFreeTest {
 		LocalTime t = LocalTime.of(18, 30);
 		RandomFree rnd = new RandomFree();
 		rnd.setROptionalValue(true);
+		int i=10;
+		rnd.setNum(i);
 		boolean result = rnd.checkGift(u, t);
 		
+		
+		
 		assertTrue(result);
+	}
+	@Test 
+	public void checkgiftchosenovernum_test() {
+		User u = new User("AleTrevi","Trevisan", "Alessio", 17); 
+		LocalTime t = LocalTime.of(18, 30);
+		RandomFree rnd = new RandomFree();
+		rnd.setROptionalValue(true);
+		int i=0;
+		rnd.setNum(i);
+		boolean result = rnd.checkGift(u, t);		
+		assertFalse(result);
 	}
 	//test funzionamento checkgift in base a chosen (valore randomico), caso utente non selezionato randomicamente (l'utente rispetta i requisiti per lo sconto)
 	@Test 
@@ -132,7 +147,30 @@ public class RandomFreeTest {
 		
 		assertFalse(result);
 	}
-	
-	
+	//controllo il funzionamento di setNum nei due casi limite e nei primi valori esterni (il campo dati num non viene modificato nel terzo e quarto caso)
+	@Test
+	public void checksetNum0_test() {
+		RandomFree rnd = new RandomFree();
+		int i=0;
+		assertEquals(0,rnd.setNum(i));
+	}
+	@Test
+	public void checksetNum10_test() {
+		RandomFree rnd = new RandomFree();
+		int i=10;
+		assertEquals(10,rnd.setNum(i));
+	}
+	@Test
+	public void checksetNum11_test() {
+		RandomFree rnd = new RandomFree();
+		int i=11;
+		assertEquals(10,rnd.setNum(i));
+	}
+	@Test
+	public void checksetNumnegative_test() {
+		RandomFree rnd = new RandomFree();
+		int i=-1;
+		assertEquals(10,rnd.setNum(i));
+	}
 
 }

@@ -27,6 +27,11 @@ public class RandomFree {
      }
     return time_eligible;
     }
+    public int setNum(int val) {
+         if (val<11 && val>-1)
+         {num=val;}
+         return num;
+    }
     
    public boolean checkage(User user){
           boolean age_eligible=false;

@@ -12,10 +12,10 @@ public class MenuItemTest {
 	// Test per il controllo del tipo di oggetto
 	
 	@Test
-	public void getItemName_test() {
+	public void getitemType_test() {
 		MenuItem m = new MenuItem(MenuItem.items.Budino, "Pinguino", 4.5);
 		
-		assertEquals(MenuItem.items.Budino, m.getItemName());
+		assertEquals(MenuItem.items.Budino, m.getitemType());
 	}
 	
 	// Test per il controllo del nome dell'oggetto

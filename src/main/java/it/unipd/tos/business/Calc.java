@@ -25,7 +25,7 @@ public double getOrderPrice(List<MenuItem> itemsOrdered, User user, LocalTime ti
         for(MenuItem it: itemsOrdered){
         total += it.getPrice();
         
-          if(it.getItemName() == MenuItem.items.Gelato){
+          if(it.getitemType() == MenuItem.items.Gelato){
      
           numGelati++;
           lessExpensive = lessExpensive > it.getPrice() ? it.getPrice() : lessExpensive;
@@ -37,7 +37,7 @@ public double getOrderPrice(List<MenuItem> itemsOrdered, User user, LocalTime ti
         
         double fiftycheck=0;
         for (int i=0;i<itemsOrdered.size();i++)
-        {if (itemsOrdered.get(i).getItemName()!=MenuItem.items.Bevanda) {
+        {if (itemsOrdered.get(i).getitemType()!=MenuItem.items.Bevanda) {
              fiftycheck+=itemsOrdered.get(i).getPrice();
              }
         }

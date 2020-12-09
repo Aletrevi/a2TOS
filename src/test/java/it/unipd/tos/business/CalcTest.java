@@ -240,7 +240,9 @@ public class CalcTest {
     			e.getException();
     		}
     	}
-    	//TEST ISSUE 6: controllo che un utente selezionabile per lo sconto che viene scelto riceva effettivamente lo sconto
+    	/*TEST ISSUE 6: controllo che un utente selezionabile per lo sconto che viene scelto riceva effettivamente lo sconto se 
+    	 gli ordini scontati sono meno di 10 (uso il caso limite con 9 ordini già scontati) */
+    	 
       	@Test
     	public void getOrderPriceRandomFreeSelected_test() {
     		
@@ -253,7 +255,7 @@ public class CalcTest {
     			orders.add(new MenuItem(MenuItem.items.Bevanda, "Sprite", 4));
     			orders.add(new MenuItem(MenuItem.items.Budino, "Cacao", 4));		
     	
-    		try {
+    		try {testCalc.ra.setNum(1);
     			testCalc.ra.setROptionalValue(true); 
     			double total = testCalc.getOrderPrice(orders, u, t);
     			assertEquals(0.0, total, 0.0);
@@ -275,7 +277,7 @@ public class CalcTest {
     			orders.add(new MenuItem(MenuItem.items.Bevanda, "Sprite", 4));
     			orders.add(new MenuItem(MenuItem.items.Budino, "Cacao", 4));	
     			
-    		try {
+    		try {testCalc.ra.setNum(1);
     			testCalc.ra.setROptionalValue(true); 
     			double total = testCalc.getOrderPrice(orders, u, t);
     			assertEquals(12, total, 0.0);
@@ -299,7 +301,7 @@ public class CalcTest {
     			orders.add(new MenuItem(MenuItem.items.Bevanda, "Sprite", 4));
     			orders.add(new MenuItem(MenuItem.items.Budino, "Cacao", 4));		
     		
-    		try {
+    		try {testCalc.ra.setNum(1);
     			testCalc.ra.setROptionalValue(true); 
     			double total = testCalc.getOrderPrice(orders, u, t);
     			assertEquals(12, total, 0.0);
@@ -323,7 +325,7 @@ public class CalcTest {
     			orders.add(new MenuItem(MenuItem.items.Bevanda, "Sprite", 4));
     			orders.add(new MenuItem(MenuItem.items.Budino, "Cacao", 4));		
     			
-    		try {
+    		try {testCalc.ra.setNum(1);
     			testCalc.ra.setROptionalValue(true); 
     			double total = testCalc.getOrderPrice(orders, u, t);
     			assertEquals(12, total, 0.0);
@@ -347,7 +349,7 @@ public class CalcTest {
     			orders.add(new MenuItem(MenuItem.items.Budino, "Cacao", 4));		
     		
     		
-    		try {
+    		try {testCalc.ra.setNum(1);
     			testCalc.ra.setROptionalValue(false);
     			double total = testCalc.getOrderPrice(orders, u, t);
     			assertEquals(12, total, 0.0);
@@ -355,4 +357,29 @@ public class CalcTest {
     			e.getException();
     		}
     	}
+      	//controllo che un utente non riceva lo sconto se sono già stati scontati almeno 10 ordini
+      	@Test
+    	public void getOrderPriceRandomFreeOver10_test() {
+    		
+    		Calc testCalc = new Calc();
+    		User u = new User("AleTrevi","Alessio", "Trevisan", 17);
+    		List<MenuItem> orders = new ArrayList<MenuItem>();
+    		LocalTime t = LocalTime.of(18, 30);
+    		
+
+    	
+    			orders.add(new MenuItem(MenuItem.items.Gelato, "Cioccolato", 4));
+    			orders.add(new MenuItem(MenuItem.items.Bevanda, "Sprite", 4));
+    			orders.add(new MenuItem(MenuItem.items.Budino, "Cacao", 4));		
+    		
+    		
+    		try {testCalc.ra.setNum(0);
+    			testCalc.ra.setROptionalValue(true);
+    			double total = testCalc.getOrderPrice(orders, u, t);
+    			assertEquals(12, total, 0.0);
+    		} catch(TakeAwayBillException e) {
+    			e.getException();
+    		}
+    	}
 }
+

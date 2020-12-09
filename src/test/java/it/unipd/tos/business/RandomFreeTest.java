@@ -147,7 +147,7 @@ public class RandomFreeTest {
 		
 		assertFalse(result);
 	}
-	//controllo il funzionamento di setNum nei due casi limite e nei primi valori esterni (il campo dati num non viene modificato nel terzo e quarto caso)
+	//controllo il funzionamento di setNum nei due casi limite e nei primi valori esterni ( num non viene modificato nel terzo e quarto caso)
 	@Test
 	public void checksetNum0_test() {
 		RandomFree rnd = new RandomFree();
